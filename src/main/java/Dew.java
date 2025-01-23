@@ -22,10 +22,27 @@ public class Dew {
         System.out.println(start_dialogue);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
+        String[] items = new String[100];
+        int counter = 0;
         while (!input.equals("bye")) {
-            System.out.println(line
-                            + input + "\n"
-                            + line);
+            if (input.equals("list")) {
+                System.out.println("____________________________________________________________");
+                int itemSize = items.length;
+                for (int i = 0; i < itemSize; i++) {
+                    int itemIndex = i + 1;
+                    if (items[i] == null) {
+                        break;
+                    }
+                    System.out.println(itemIndex + ". " + items[i]);
+                }
+                System.out.println(line);
+            } else {
+                System.out.println(line
+                        + "added: " + input + "\n"
+                        + line);
+                items[counter] = input;
+                counter++;
+            }
             input = scanner.nextLine();
         }
         System.out.println(end_dialogue);
