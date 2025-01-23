@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Dew {
     public static void main(String[] args) {
         String logo = " ____           \n"
@@ -8,14 +10,23 @@ public class Dew {
         System.out.println("Hello from\n" + logo);
 
         String start_dialogue = "____________________________________________________________\n" +
-                " Hello! I'm [YOUR CHATBOT NAME]\n" +
+                " Hello! I'm Dew\n" +
                 " What can I do for you?\n" +
                 "____________________________________________________________\n";
 
         String end_dialogue = " Bye. Hope to see you again soon!\n" +
                 "____________________________________________________________\n";
 
+        String line = "____________________________________________________________\n";
         System.out.println(start_dialogue);
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        while (!input.equals("bye")) {
+            System.out.println(line
+                                + input + "\n"
+                                + line);
+            input = scanner.nextLine();
+        }
         System.out.println(end_dialogue);
     }
 }
