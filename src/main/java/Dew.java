@@ -14,7 +14,8 @@ public class Dew {
                 " What can I do for you?\n" +
                 "____________________________________________________________\n";
 
-        String end_dialogue = " Bye. Hope to see you again soon!\n" +
+        String end_dialogue = "____________________________________________________________\n" +
+                " Bye. Hope to see you again soon!\n" +
                 "____________________________________________________________\n";
 
         String line = "____________________________________________________________\n";
@@ -23,8 +24,8 @@ public class Dew {
         String input = scanner.nextLine();
         while (!input.equals("bye")) {
             System.out.println(line
-                                + input + "\n"
-                                + line);
+                            + input + "\n"
+                            + line);
             input = scanner.nextLine();
         }
         System.out.println(end_dialogue);
