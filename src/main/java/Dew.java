@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Dew {
     public static void main(String[] args) {
-        String logo = " ____           \n"
+        String logo = " ____\n"
                     + "|  _ \\  _____     __     __\n"
                     + "| | | |/ _ \\  \\  /   \\  / /\n"
                     + "| |_| |  __/ \\ v  / \\ \\/ /\n"
