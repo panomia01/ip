@@ -1,0 +1,4 @@
+T | 0 |  run
+D | 0 |  return book | Sunday
+D | 0 |  study | Sunday
+T | 0 |  game
