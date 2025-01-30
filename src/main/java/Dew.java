@@ -1,11 +1,15 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Dew {
+    private static final String FILE_PATH = "src/main/tasks.txt";
+
     public static void main(String[] args) {
         String logo = " ____\n"
                     + "|  _ \\  _____     __     __\n"
@@ -30,7 +34,8 @@ public class Dew {
 //        String[] userInput = input.split(" ");
 //        Task[] items = new Task[100];
         ArrayList<Task> items = new ArrayList<>();
-        int counter = 0;
+        loadTasks(items);
+        int counter = items.size();
         while (!input.equals("bye")) {
             try {
                 if (input.equals("list")) {
@@ -130,7 +135,44 @@ public class Dew {
             input = scanner.next();
 //            userInput = input.split(" ");
         }
+        saveTasks(items);
         System.out.println(end_dialogue);
+    }
+
+    private static void loadTasks(ArrayList<Task> items) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" \\| ");
+                String type = parts[0];
+                boolean isDone = parts[1].equals("1");
+                if (type.equals("T")) {
+                    Todo todo = new Todo(parts[2]);
+                    if (isDone) todo.markStatusIcon();
+                    items.add(todo);
+                } else if (type.equals("D")) {
+                    Deadline deadline = new Deadline(parts[2], parts[3]);
+                    if (isDone) deadline.markStatusIcon();
+                    items.add(deadline);
+                } else if (type.equals("E")) {
+                    Event event = new Event(parts[2], parts[3], parts[4]);
+                    if (isDone) event.markStatusIcon();
+                    items.add(event);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No previous tasks found, starting fresh.");
+        }
+    }
+
+    private static void saveTasks(ArrayList<Task> items) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
+            for (Task task : items) {
+                writer.write(task.toFileFormat() + "\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks.");
+        }
     }
 
 //

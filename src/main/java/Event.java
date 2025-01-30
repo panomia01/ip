@@ -10,6 +10,11 @@ public class Event extends  Task{
     }
 
     @Override
+    public String toFileFormat() {
+        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + timeStart + " | " + timeEnd    ;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + timeStart + " to: " + timeEnd + ")";
     }
