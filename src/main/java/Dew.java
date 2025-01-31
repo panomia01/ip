@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -88,7 +89,7 @@ public class Dew {
                         throw new DewException("OOPS!!! The description of a Deadline is not fully filled");
                     }
 //                    items[counter] = new Deadline(userInput[0], userInput[1]);
-                    items.add(new Deadline(userInput[0], userInput[1]));
+                    items.add(new Deadline(userInput[0], LocalDate.parse(userInput[1])));
 
                     System.out.println("____________________________________________________________\n"
                             + "Got it. I've added this task:\n"
@@ -151,7 +152,7 @@ public class Dew {
                     if (isDone) todo.markStatusIcon();
                     items.add(todo);
                 } else if (type.equals("D")) {
-                    Deadline deadline = new Deadline(parts[2], parts[3]);
+                    Deadline deadline = new Deadline(parts[2], LocalDate.parse(parts[3]));
                     if (isDone) deadline.markStatusIcon();
                     items.add(deadline);
                 } else if (type.equals("E")) {
