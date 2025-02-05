@@ -1,3 +1,15 @@
+package dew;
+
+import command.Command;
+
+import parser.Parser;
+
+import storage.Storage;
+
+import task.TaskList;
+
+import ui.Ui;
+
 public class Dew {
     private Storage storage;
     private TaskList tasks;

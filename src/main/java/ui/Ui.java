@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -15,7 +17,7 @@ public class Ui {
                 + "|____/ \\___|  \\__/   \\__/\n";
 
         String start_dialogue = "____________________________________________________________\n" +
-                " Hello! I'm Dew\n" +
+                " Hello! I'm dew.Dew\n" +
                 " What can I do for you?\n" +
                 "____________________________________________________________\n";
 

@@ -1,3 +1,7 @@
+package task;
+
+import dew.DewException;
+
 import java.time.LocalDate;
 
 public abstract class Task {
@@ -21,7 +25,7 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public static Task fromString(String data) throws DewException{
+    public static Task fromString(String data) throws DewException {
         String[] parts = data.split(" \\| ");
 
         String type = parts[0];

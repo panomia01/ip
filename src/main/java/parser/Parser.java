@@ -1,3 +1,19 @@
+package parser;
+
+import command.Command;
+import command.AddCommand;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.UnmarkCommand;
+
+import dew.DewException;
+
+import task.Deadline;
+import task.Event;
+import task.Todo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -20,7 +36,7 @@ public class Parser {
                 return new AddCommand(new Todo(inputParts[1]));
             case "deadline":
                 if (!inputParts[1].contains(" /by ")) {
-                throw new DewException("Deadline format: deadline <task> /by <YYYY-MM-DD>");
+                throw new DewException("task.Deadline format: deadline <task> /by <YYYY-MM-DD>");
             }
             String[] deadlineParts = inputParts[1].split(" /by ", 2);
             try {
@@ -31,7 +47,7 @@ public class Parser {
             }
             case "event":
                 if (!inputParts[1].contains(" /from ") || !inputParts[1].contains(" /to ")) {
-                    throw new DewException("Event format: event <task> /from <start> /to <end>");
+                    throw new DewException("task.Event format: event <task> /from <start> /to <end>");
                 }
                 String[] eventParts = inputParts[1].split(" /from ", 2);
                 String[] timeParts = eventParts[1].split(" /to ", 2);
