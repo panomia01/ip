@@ -19,7 +19,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> load() throws DewException {
+    public ArrayList<Task> loadTasks() throws DewException {
         ArrayList<Task> tasks = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
