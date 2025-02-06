@@ -83,4 +83,20 @@ public class TaskList {
             System.out.println((i + 1) + "." + tasks.get(i));
         }
     }
+
+    /**
+     * Finds and displays tasks that contain the specified keyword.
+     *
+     * @param keyword The keyword to search for.
+     */
+    public void findTasks(String keyword) {
+        System.out.println("Here are the matching tasks in your list:");
+        int index = 1;
+        for (Task task : tasks) {
+            if (task.toString().contains(keyword)) {
+                System.out.println(index + "." + task);
+            }
+            index++;
+        }
+    }
 }

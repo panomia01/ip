@@ -4,6 +4,7 @@ import command.Command;
 import command.AddCommand;
 import command.DeleteCommand;
 import command.ExitCommand;
+import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
@@ -64,6 +65,11 @@ public class Parser {
                 return new AddCommand(new Event(eventParts[0].trim(), timeParts[0].trim(), timeParts[1].trim()));
             case "delete":
                 return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
+            case "find":
+                if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+                    throw new DewException("The keyword for find cannot be empty.");
+                }
+                return new FindCommand(inputParts[1]);
             case "bye":
                 return new ExitCommand();
             default:
