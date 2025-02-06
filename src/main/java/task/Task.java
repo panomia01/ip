@@ -1,30 +1,55 @@
 package task;
 
 import dew.DewException;
-
 import java.time.LocalDate;
 
+/**
+ * The Task class represents a generic task with a description and completion status.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a Task with the given description.
+     *
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void markStatusIcon() {
         this.isDone = true;
     }
 
+    /**
+     * Unmarks the task, setting it as incomplete.
+     */
     public void unMarkStatusIcon() {
         this.isDone = false;
     }
 
+    /**
+     * Returns the status icon for the task.
+     *
+     * @return "X" if the task is completed, otherwise a space.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Converts a formatted string into a Task object.
+     *
+     * @param data The formatted string representing the task.
+     * @return The corresponding Task object.
+     * @throws DewException If the task format is invalid.
+     */
     public static Task fromString(String data) throws DewException {
         String[] parts = data.split(" \\| ");
 
@@ -57,12 +82,22 @@ public abstract class Task {
         return task;
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return The formatted string representation of the task.
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "]" + " " + description;
     }
 
+    /**
+     * Returns the string format of the task for file storage.
+     *
+     * @return The task description.
+     */
     public String toFileFormat() {
         return description;
-    };
+    }
 }
