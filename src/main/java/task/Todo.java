@@ -3,8 +3,8 @@ package task;
 /**
  * The Todo class represents a simple task without any specific deadline or time.
  */
-public class Todo extends Task {
 
+public class Todo extends Task {
     /**
      * Constructs a Todo task with a description.
      *
