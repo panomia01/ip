@@ -4,3 +4,4 @@ E | 0 | project meeting | Mon 2pm | 4pm
 D | 0 | sleep | 2025-10-02
 T | 0 | 2103T
 T | 0 | run
+D | 0 | eat med | 2025-12-02
