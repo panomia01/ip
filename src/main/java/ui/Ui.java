@@ -26,12 +26,12 @@ public class Ui {
                 + "| |_| |  __/ \\ v  / \\ \\/ /\n"
                 + "|____/ \\___|  \\__/   \\__/\n";
 
-        String start_dialogue = "____________________________________________________________\n" +
+        String startDialogue = "____________________________________________________________\n" +
                 " Hello! I'm Dew\n" +
                 " What can I do for you?\n" +
                 "____________________________________________________________\n";
 
-        System.out.println("Hello from\n" + logo + start_dialogue);
+        System.out.println("Hello from\n" + logo + startDialogue);
     }
 
     /**

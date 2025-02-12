@@ -7,17 +7,17 @@ import java.time.LocalDate;
  */
 public class Deadline extends Task {
 
-    protected LocalDate by;
+    protected LocalDate date;
 
     /**
      * Constructs a Deadline task with a description and due date.
      *
      * @param description The description of the deadline task.
-     * @param by          The due date of the task.
+     * @param date          The due date of the task.
      */
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDate date) {
         super(description);
-        this.by = by;
+        this.date = date;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by;
+        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + date;
     }
 
     /**
@@ -37,6 +37,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.getMonth() + " " + by.getDayOfMonth() + " " + by.getYear() + ")";
+        return "[D]" + super.toString() + " (by: " + date.getMonth() + " " + date.getDayOfMonth() + " " + date.getYear() + ")";
     }
 }
