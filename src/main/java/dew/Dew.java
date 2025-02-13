@@ -21,13 +21,28 @@ public class Dew {
      * @param filePath The file path where tasks are stored.
      */
     public Dew(String filePath) {
-        ui = new Ui();
+        this.ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadTasks());
         } catch (DewException e) {
             ui.showLoadingError();
             tasks = new TaskList();
+        }
+    }
+
+    /**
+     * Generates a response to the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            String commandOutput = command.execute(tasks, ui, storage);
+            return commandOutput;
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+            storage.saveTasks(tasks.getTasks());
+            return errorMessage;
         }
     }
 
@@ -50,15 +65,5 @@ public class Dew {
                 ui.showLine();
             }
         }
-    }
-
-    /**
-     * The main method, which serves as the entry point of the program.
-     * It creates an instance of Dew and starts the application.
-     *
-     * @param args Command-line arguments (not used in this application).
-     */
-    public static void main(String[] args) {
-        new Dew("src/main/tasks.txt").run();
     }
 }

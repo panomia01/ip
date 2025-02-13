@@ -30,9 +30,10 @@ public class TaskList {
      *
      * @param task The task to be added.
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         tasks.add(task);
-        System.out.println("Got it. I've added this task:\n   " + task);
+        //        System.out.println("Got it. I've added this task:\n   " + task);
+        return "Got it. I've added this task:\n   " + task;
     }
 
     /**
@@ -40,9 +41,9 @@ public class TaskList {
      *
      * @param index The index of the task to be removed.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task removedTask = tasks.remove(index);
-        System.out.println("Noted. I've removed this task:\n   " + removedTask);
+        return "Noted. I've removed this task:\n   " + removedTask;
     }
 
     /**
@@ -50,9 +51,12 @@ public class TaskList {
      *
      * @param index The index of the task to be marked.
      */
-    public void markTask(int index) {
+    public String markTask(int index) {
         tasks.get(index).markStatusIcon();
         System.out.println("Nice! I've marked this task as done:\n   " + tasks.get(index));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nice! I've marked this task as done:\n   " + tasks.get(index));
+        return sb.toString();
     }
 
     /**
@@ -60,9 +64,12 @@ public class TaskList {
      *
      * @param index The index of the task to be unmarked.
      */
-    public void unmarkTask(int index) {
+    public String unmarkTask(int index) {
+        StringBuilder sb = new StringBuilder();
         tasks.get(index).unMarkStatusIcon();
         System.out.println("OK, I've marked this task as not done yet:\n   " + tasks.get(index));
+        sb.append("OK, I've marked this task as not done yet:\n   " + tasks.get(index));
+        return sb.toString();
     }
 
     /**
@@ -77,11 +84,15 @@ public class TaskList {
     /**
      * Lists all tasks in the task list, displaying them with their index.
      */
-    public void listTasks() {
+    public String listTasks() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:");
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + "." + tasks.get(i));
+            sb.append((i + 1) + "." + tasks.get(i));
         }
+        return sb.toString();
     }
 
     /**
@@ -89,14 +100,18 @@ public class TaskList {
      *
      * @param keyword The keyword to search for.
      */
-    public void findTasks(String keyword) {
+    public String findTasks(String keyword) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list:");
         System.out.println("Here are the matching tasks in your list:");
         int index = 1;
         for (Task task : tasks) {
             if (task.toString().contains(keyword)) {
                 System.out.println(index + "." + task);
+                sb.append(index + "." + task);
             }
             index++;
         }
+        return sb.toString();
     }
 }

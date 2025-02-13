@@ -16,7 +16,7 @@ public abstract class Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system for saving and loading tasks.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Determines whether this command causes the application to exit.

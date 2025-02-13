@@ -27,9 +27,10 @@ public class AddCommand extends Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system for saving tasks.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.addTask(task);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String responseToAnswer = tasks.addTask(task);
         storage.saveTasks(tasks.getTasks());
+        return responseToAnswer;
     }
 
     /**

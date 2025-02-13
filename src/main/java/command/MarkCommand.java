@@ -26,9 +26,10 @@ public class MarkCommand extends Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system for saving updated tasks.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.markTask(index);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String responseToUser = tasks.markTask(index);
         storage.saveTasks(tasks.getTasks());
+        return responseToUser;
     }
 
     /**

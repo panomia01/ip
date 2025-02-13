@@ -15,9 +15,10 @@ public class ExitCommand extends Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system (not used in this command).
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showLine();
-        System.out.println("Goodbye!");
+        //        System.out.println("Goodbye!");
+        return "Goodbye!";
     }
 
     /**

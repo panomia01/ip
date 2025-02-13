@@ -27,8 +27,9 @@ public class FindCommand extends Command {
      * @param storage The storage system (not used in this command).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.findTasks(keyword);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String responseToUser = tasks.findTasks(keyword);
+        return responseToUser;
     }
 
     /**
