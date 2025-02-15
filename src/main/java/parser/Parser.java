@@ -2,6 +2,7 @@ package parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import command.AddCommand;
 import command.Command;
@@ -41,7 +42,10 @@ public class Parser {
             return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "todo":
             boolean isInputLengthInvalidForTodo = inputParts.length < 2;
-            boolean isDescriptionEmptyForTodo = inputParts[1].trim().isEmpty();
+            boolean isDescriptionEmptyForTodo = Arrays.stream(inputParts)
+                    .skip(1)
+                    .map(String::trim)
+                    .allMatch(String::isEmpty);
             if (isInputLengthInvalidForTodo || isDescriptionEmptyForTodo) {
                 throw new DewException("The description of a todo cannot be empty.");
             }
@@ -68,7 +72,10 @@ public class Parser {
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
         case "find":
             boolean isInputLengthInvalidForFind = inputParts.length < 2;
-            boolean isDescriptionEmptyForFind = inputParts[1].trim().isEmpty();
+            boolean isDescriptionEmptyForFind = Arrays.stream(inputParts)
+                    .skip(1)
+                    .map(String::trim)
+                    .allMatch(String::isEmpty);
             if (isInputLengthInvalidForFind || isDescriptionEmptyForFind) {
                 throw new DewException("The keyword for find cannot be empty.");
             }

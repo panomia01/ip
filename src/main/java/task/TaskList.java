@@ -108,7 +108,7 @@ public class TaskList {
         for (Task task : tasks) {
             if (task.toString().contains(keyword)) {
                 System.out.println(index + "." + task);
-                sb.append(index + "." + task);
+                sb.append(index + "." + task + System.lineSeparator());
             }
             index++;
         }

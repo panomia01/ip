@@ -10,3 +10,5 @@ T | 0 | week 5 tasking
 T | 0 | finish 2103T IP
 T | 0 | sleep
 D | 0 | run | 2025-10-11
+T | 0 | run
+T | 0 | game
