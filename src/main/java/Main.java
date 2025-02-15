@@ -7,11 +7,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
+/**b
  * A GUI for Dew using FXML.
  */
 public class Main extends Application {
-    private static final String FILE_PATH = "src/main/tasks.txt";
+    private static String FILE_PATH = "src/main/tasks.txt";
     private Dew dew = new Dew(FILE_PATH);
 
     @Override

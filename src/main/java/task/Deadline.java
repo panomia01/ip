@@ -27,7 +27,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + date;
+        String isTaskMarkedAsDone = isDone ? "1" : "0";
+        return "D | " + isTaskMarkedAsDone + " | " + description + " | " + date;
     }
 
     /**
@@ -37,6 +38,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date.getMonth() + " " + date.getDayOfMonth() + " " + date.getYear() + ")";
+        return "[D]" + super.toString() + " (by: " + date.getMonth() + " "
+                + date.getDayOfMonth() + " " + date.getYear() + ")";
     }
 }

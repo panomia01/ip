@@ -1,7 +1,8 @@
 package task;
 
-import dew.DewException;
 import java.time.LocalDate;
+
+import dew.DewException;
 
 /**
  * The Task class represents a generic task with a description and completion status.
@@ -59,20 +60,20 @@ public abstract class Task {
 
         Task task;
         switch (type) {
-            case "T":
-                task = new Todo(description);
-                break;
-            case "D":
-                LocalDate by = LocalDate.parse(parts[3]);
-                task = new Deadline(description, by);
-                break;
-            case "E":
-                String timeStart = parts[3];
-                String timeEnd = parts[4];
-                task = new Event(description, timeStart, timeEnd);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid task format.");
+        case "T":
+            task = new Todo(description);
+            break;
+        case "D":
+            LocalDate by = LocalDate.parse(parts[3]);
+            task = new Deadline(description, by);
+            break;
+        case "E":
+            String timeStart = parts[3];
+            String timeEnd = parts[4];
+            task = new Event(description, timeStart, timeEnd);
+            break;
+        default:
+            throw new IllegalArgumentException("Invalid task format.");
         }
 
         if (isDone) {
