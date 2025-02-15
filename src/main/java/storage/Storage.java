@@ -1,14 +1,14 @@
 package storage;
 
-import dew.DewException;
-import task.Task;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import dew.DewException;
+import task.Task;
 
 /**
  * The Storage class handles reading from and writing to the task storage file.

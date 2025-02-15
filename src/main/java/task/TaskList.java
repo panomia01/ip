@@ -32,7 +32,7 @@ public class TaskList {
      */
     public String addTask(Task task) {
         tasks.add(task);
-        //        System.out.println("Got it. I've added this task:\n   " + task);
+        System.out.println("Got it. I've added this task:\n   " + task);
         return "Got it. I've added this task:\n   " + task;
     }
 

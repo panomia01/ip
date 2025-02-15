@@ -1,22 +1,20 @@
 package parser;
 
-import command.Command;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import command.AddCommand;
+import command.Command;
 import command.DeleteCommand;
 import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
-
 import dew.DewException;
-
 import task.Deadline;
 import task.Event;
 import task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * The Parser class processes user input and returns the corresponding command.
@@ -34,7 +32,6 @@ public class Parser {
         assert !userInput.trim().isEmpty() : "User input should not be empty";
         String[] inputParts = userInput.split(" ", 2);
         String command = inputParts[0];
-
         switch (command) {
         case "list":
             return new ListCommand();
@@ -43,7 +40,9 @@ public class Parser {
         case "unmark":
             return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "todo":
-            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+            boolean isInputLengthInvalidForTodo = inputParts.length < 2;
+            boolean isDescriptionEmptyForTodo = inputParts[1].trim().isEmpty();
+            if (isInputLengthInvalidForTodo || isDescriptionEmptyForTodo) {
                 throw new DewException("The description of a todo cannot be empty.");
             }
             return new AddCommand(new Todo(inputParts[1]));
@@ -68,7 +67,9 @@ public class Parser {
         case "delete":
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
         case "find":
-            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
+            boolean isInputLengthInvalidForFind = inputParts.length < 2;
+            boolean isDescriptionEmptyForFind = inputParts[1].trim().isEmpty();
+            if (isInputLengthInvalidForFind || isDescriptionEmptyForFind) {
                 throw new DewException("The keyword for find cannot be empty.");
             }
             return new FindCommand(inputParts[1]);
