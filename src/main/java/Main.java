@@ -11,12 +11,13 @@ import javafx.stage.Stage;
  * A GUI for Dew using FXML.
  */
 public class Main extends Application {
-    private static String FILE_PATH = "src/main/tasks.txt";
+    private static final String FILE_PATH = "src/main/tasks.txt";
     private Dew dew = new Dew(FILE_PATH);
 
     @Override
     public void start(Stage stage) {
         try {
+            assert dew != null : "Dew instance should be initialized before starting the app";
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);

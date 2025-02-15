@@ -30,6 +30,8 @@ public class Parser {
      * @throws DewException If the command is invalid or incorrectly formatted.
      */
     public static Command parse(String userInput) throws DewException {
+        assert userInput != null : "User input should not be null";
+        assert !userInput.trim().isEmpty() : "User input should not be empty";
         String[] inputParts = userInput.split(" ", 2);
         String command = inputParts[0];
 
