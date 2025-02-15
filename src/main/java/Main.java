@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**b
+/**
  * A GUI for Dew using FXML.
  */
 public class Main extends Application {
