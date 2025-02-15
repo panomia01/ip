@@ -86,11 +86,11 @@ public class TaskList {
      */
     public String listTasks() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are the tasks in your list:");
+        sb.append("Here are the tasks in your list:" + "\n");
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + "." + tasks.get(i));
-            sb.append((i + 1) + "." + tasks.get(i));
+            sb.append((i + 1) + "." + tasks.get(i) + "\n");
         }
         return sb.toString();
     }

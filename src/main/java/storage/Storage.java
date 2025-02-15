@@ -22,6 +22,7 @@ public class Storage {
      * @param filePath The file path where tasks are stored.
      */
     public Storage(String filePath) {
+        assert filePath != null && !filePath.isEmpty() : "File path should not be null or empty";
         this.filePath = filePath;
     }
 
@@ -50,6 +51,8 @@ public class Storage {
      * @param tasks The list of tasks to be saved.
      */
     public void saveTasks(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list should not be null";
+        assert !tasks.isEmpty() : "Task list should not be empty when saving";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Task task : tasks) {
                 writer.write(task.toFileFormat());
