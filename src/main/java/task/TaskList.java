@@ -114,4 +114,24 @@ public class TaskList {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns the number of tasks currently in the task list.
+     *
+     * @return The total count of tasks in the list.
+     */
+    public int size() {
+        return tasks.size();
+    }
+
+    /**
+     * Retrieves a task by its index.
+     *
+     * @param taskIndex The index of the task to retrieve (zero-based index).
+     * @return The Task object at the specified index.
+     * @throws IndexOutOfBoundsException If the index is invalid.
+     */
+    public Task get(int taskIndex) {
+        return tasks.get(taskIndex);
+    }
 }

@@ -32,6 +32,31 @@ public class Deadline extends Task {
     }
 
     /**
+     * Updates a specific component of a Deadline task.
+     * The user can update the task description or the deadline date.
+     *
+     * @param component The component to update ("description" or "by").
+     * @param newValue  The new value for the specified component.
+     * @throws IllegalArgumentException If an invalid component is provided or if the date format is incorrect.
+     */
+    @Override
+    public void updateComponent(String component, String newValue) {
+        if (component.equalsIgnoreCase("description")) {
+            updateDescription(newValue);
+        } else if (component.equalsIgnoreCase("date")) {
+            try {
+                this.date = LocalDate.parse(newValue);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid date format for 'by'. Use YYYY-MM-DD.");
+            }
+        } else {
+            throw new IllegalArgumentException("Invalid component '" + component
+                    + "' for Deadline tasks. Available: description, by");
+        }
+    }
+
+
+    /**
      * Returns a string representation of the deadline task.
      *
      * @return The formatted string representation of the deadline task.

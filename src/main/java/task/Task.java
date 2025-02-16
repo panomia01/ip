@@ -83,6 +83,21 @@ public abstract class Task {
         return task;
     }
 
+    public void updateDescription(String newDescription) {
+        assert newDescription != null && !newDescription.trim().isEmpty() : "New description cannot be empty";
+        this.description = newDescription;
+    }
+
+    /**
+     * Updates a specific component of a task.
+     * Each subclass (Todo, Deadline, Event) must override this method
+     * to define how specific components are updated.
+     *
+     * @param component The component to update (e.g., "description", "by", "start", "end").
+     * @param newValue  The new value to set for the specified component.
+     */
+    public abstract void updateComponent(String component, String newValue);
+
     /**
      * Returns a string representation of the task.
      *

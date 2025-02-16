@@ -7,6 +7,7 @@ import java.util.Arrays;
 import command.AddCommand;
 import command.Command;
 import command.DeleteCommand;
+import command.EditCommand;
 import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
@@ -68,6 +69,24 @@ public class Parser {
             String[] eventParts = inputParts[1].split(" /from ", 2);
             String[] timeParts = eventParts[1].split(" /to ", 2);
             return new AddCommand(new Event(eventParts[0].trim(), timeParts[0].trim(), timeParts[1].trim()));
+        case "edit":
+            assert inputParts.length >= 4 : "Edit command requires a task number, component, and new value";
+
+            try {
+                String[] editParts = inputParts[1].split("\\s+", 3);
+                int taskIndex = Integer.parseInt(editParts[0]) - 1;
+                if (editParts.length < 3 || editParts[2].trim().isEmpty()) {
+                    throw new DewException("Invalid edit format! Use: edit <task_index> <component> <new_value>");
+                }
+
+                String component = editParts[1].trim();
+                String newValue = editParts[2].trim();
+
+                return new EditCommand(taskIndex, component, newValue);
+
+            } catch (NumberFormatException e) {
+                throw new DewException("Invalid task number! Task index must be a valid number.");
+            }
         case "delete":
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
         case "find":

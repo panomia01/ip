@@ -33,6 +33,37 @@ public class Event extends Task {
     }
 
     /**
+     * Updates a specific component of an Event task.
+     * The user can update the task description, start date, or end date.
+     *
+     * @param component The component to update ("description", "start", or "end").
+     * @param newValue  The new value for the specified component.
+     * @throws IllegalArgumentException If an invalid component is provided or if the date format is incorrect.
+     */
+    @Override
+    public void updateComponent(String component, String newValue) {
+        if (component.equalsIgnoreCase("description")) {
+            updateDescription(newValue);
+        } else if (component.equalsIgnoreCase("start")) {
+            try {
+                this.timeStart = newValue;
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid date format for 'start'. Use YYYY-MM-DD.");
+            }
+        } else if (component.equalsIgnoreCase("end")) {
+            try {
+                this.timeEnd = newValue;
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Invalid date format for 'end'. Use YYYY-MM-DD.");
+            }
+        } else {
+            throw new IllegalArgumentException("Invalid component '" + component
+                    + "' for Event tasks. Available: description, start, end");
+        }
+    }
+
+
+    /**
      * Returns a string representation of the event.
      *
      * @return The formatted string representation of the event.
