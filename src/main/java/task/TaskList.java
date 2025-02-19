@@ -31,9 +31,12 @@ public class TaskList {
      * @param task The task to be added.
      */
     public String addTask(Task task) {
+        StringBuilder sb = new StringBuilder();
         tasks.add(task);
-        System.out.println("Got it. I've added this task:\n   " + task);
-        return "Got it. I've added this task:\n   " + task;
+        sb.append("Got it. I've added this task:\n");
+        sb.append(task).append("\n");
+        sb.append("You now have ").append(tasks.size()).append(" tasks in the list.");
+        return sb.toString();
     }
 
     /**

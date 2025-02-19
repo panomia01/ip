@@ -26,18 +26,12 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        String logo = " __\n"
-                + "|  _ \\  ___      _     _\n"
-                + "| | | |/ __ \\  \\  /   \\  / /\n"
-                + "| |_| |  __/ \\ v  / \\ \\/ /\n"
-                + "|__/ \\__/   \\_/   \\_/\n";
 
         String startDialogue = " Hello! I'm Dew\n"
                 + " What can I do for you?\n";
 
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         StringBuilder sb = new StringBuilder();
-        sb.append(logo);
         sb.append(startDialogue);
         DialogBox welcomeMessage = DialogBox.getDukeDialog(sb.toString(), dewImage);
         dialogContainer.getChildren().add(welcomeMessage);

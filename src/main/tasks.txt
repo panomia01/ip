@@ -1,14 +1,4 @@
-T | 0 | eat med
+T | 0 | Go for a run
+D | 0 | Return Books | 2025-10-20
 E | 0 | project meeting | Mon 2pm | 4pm
-D | 0 | sleep | 2025-10-02
 T | 0 | sleep
-T | 0 | CS2103T
-D | 0 | eat med | 2025-10-24
-T | 0 | sleep
-D | 0 | recover | 2025-10-05
-T | 0 | week 5 tasking
-T | 0 | finish 2103T IP
-T | 0 | sleep
-D | 0 | run | 2025-10-11
-T | 0 | run
-T | 0 | game
