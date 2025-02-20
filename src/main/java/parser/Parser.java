@@ -39,12 +39,12 @@ public class Parser {
             return new ListCommand();
         case "mark":
             if (inputParts.length < 2) {
-                throw new DewException("Event command must include a task description and time range.");
+                throw new DewException("Mark command must include a task description.");
             }
             return new MarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "unmark":
             if (inputParts.length < 2) {
-                throw new DewException("Event command must include a task description and time range.");
+                throw new DewException("Unmark command must include a task description.");
             }
             return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "todo":
@@ -101,7 +101,7 @@ public class Parser {
             }
         case "delete":
             if (inputParts.length < 2) {
-                throw new DewException("Event command must include a task description and time range.");
+                throw new DewException("Delete command must include a task number.");
             }
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
         case "find":
