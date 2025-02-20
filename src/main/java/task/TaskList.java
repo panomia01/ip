@@ -105,7 +105,7 @@ public class TaskList {
      */
     public String findTasks(String keyword) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are the matching tasks in your list:");
+        sb.append("Here are the matching tasks in your list:\n");
         System.out.println("Here are the matching tasks in your list:");
         int index = 1;
         for (Task task : tasks) {

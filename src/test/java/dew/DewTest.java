@@ -1,10 +1,10 @@
 package dew;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class dewTest {
+import org.junit.jupiter.api.Test;
+
+public class DewTest {
     @Test
     public void dummyTest() {
         assertEquals(2, 2);

@@ -17,7 +17,6 @@ public class ExitCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showLine();
-        //        System.out.println("Goodbye!");
         return "Goodbye!";
     }
 

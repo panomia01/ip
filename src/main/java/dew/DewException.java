@@ -11,8 +11,6 @@ public class DewException extends Exception {
      * @param message The error message to be displayed.
      */
     public DewException(String message) {
-        super("____________________________________________________________\n"
-                + message + System.lineSeparator()
-                + "_________________________________________________________________\n");
+        super(message + System.lineSeparator());
     }
 }

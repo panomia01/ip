@@ -38,8 +38,14 @@ public class Parser {
         case "list":
             return new ListCommand();
         case "mark":
+            if (inputParts.length < 2) {
+                throw new DewException("Event command must include a task description and time range.");
+            }
             return new MarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "unmark":
+            if (inputParts.length < 2) {
+                throw new DewException("Event command must include a task description and time range.");
+            }
             return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "todo":
             boolean isInputLengthInvalidForTodo = inputParts.length < 2;
@@ -52,6 +58,9 @@ public class Parser {
             }
             return new AddCommand(new Todo(inputParts[1]));
         case "deadline":
+            if (inputParts.length < 2) {
+                throw new DewException("Deadline command must include a task description and a deadline.");
+            }
             if (!inputParts[1].contains(" /by ")) {
                 throw new DewException("task.Deadline format: deadline <task> /by <YYYY-MM-DD>");
             }
@@ -63,6 +72,9 @@ public class Parser {
                 throw new DewException("Invalid date format! Use YYYY-MM-DD.");
             }
         case "event":
+            if (inputParts.length < 2) {
+                throw new DewException("Event command must include a task description and time range.");
+            }
             if (!inputParts[1].contains(" /from ") || !inputParts[1].contains(" /to ")) {
                 throw new DewException("task.Event format: event <task> /from <start> /to <end>");
             }
@@ -88,6 +100,9 @@ public class Parser {
                 throw new DewException("Invalid task number! Task index must be a valid number.");
             }
         case "delete":
+            if (inputParts.length < 2) {
+                throw new DewException("Event command must include a task description and time range.");
+            }
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);
         case "find":
             boolean isInputLengthInvalidForFind = inputParts.length < 2;

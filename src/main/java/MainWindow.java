@@ -1,4 +1,5 @@
 import dew.Dew;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -6,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 /**
  * Controller for the main GUI.
  */
@@ -23,6 +26,7 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dewImage = new Image(this.getClass().getResourceAsStream("/images/DaDew.png"));
+    private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/Background.png"));
 
     @FXML
     public void initialize() {
@@ -54,6 +58,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dewImage)
         );
+        if (input.trim().equals("bye")) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(event -> System.exit(0));
+            delay.play();
+        }
         userInput.clear();
     }
 }

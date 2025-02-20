@@ -1,4 +1,3 @@
 T | 0 | Go for a run
 D | 0 | Return Books | 2025-10-20
-E | 0 | project meeting | Mon 2pm | 4pm
-T | 0 | sleep
+E | 0 | project meeting | 2025-10-05 | 2025-10-20
