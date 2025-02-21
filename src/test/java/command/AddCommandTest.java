@@ -1,17 +1,19 @@
 package command;
 
-import dew.DewException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-import task.Task;
-import task.TaskList;
-import storage.Storage;
-import task.Todo;
-import ui.Ui;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import dew.DewException;
+import storage.Storage;
+import task.Task;
+import task.TaskList;
+import task.Todo;
+import ui.Ui;
 
 public class AddCommandTest {
 
@@ -45,7 +47,8 @@ public class AddCommandTest {
         // Manually check if tasks were saved (assuming storage has a way to retrieve saved tasks)
         TaskList loadedTasks = new TaskList(storage.loadTasks());
         assertEquals(1, loadedTasks.getTasks().size(), "Storage should persist the task");
-        assertEquals(sampleTask.toString(), loadedTasks.getTasks().get(0).toString(), "Stored task should match original");
+        assertEquals(sampleTask.toString(), loadedTasks.getTasks().get(0).toString(),
+                "Stored task should match original");
     }
 
     @Test

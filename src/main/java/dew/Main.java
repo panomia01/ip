@@ -1,6 +1,8 @@
+package dew;
+
 import java.io.IOException;
 
-import dew.Dew;
+import gui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,8 +13,8 @@ import javafx.stage.Stage;
  * A GUI for Dew using FXML.
  */
 public class Main extends Application {
-    private static String FILE_PATH = "src/main/tasks.txt";
-    private Dew dew = new Dew(FILE_PATH);
+    private static final String FILE_PATH = "src/main/tasks.txt";
+    private final Dew dew = new Dew(FILE_PATH);
 
     @Override
     public void start(Stage stage) {

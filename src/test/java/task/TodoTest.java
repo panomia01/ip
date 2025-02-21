@@ -1,8 +1,11 @@
 package task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoTest {
 
@@ -26,15 +29,18 @@ public class TodoTest {
 
     @Test
     void toString_formatsCorrectly() {
-        assertEquals("[T][ ] Test Todo", todo.toString(), "toString should match expected format before marking as done");
+        assertEquals("[T][ ] Test Todo", todo.toString(),
+                "toString should match expected format before marking as done");
 
         todo.markStatusIcon();
-        assertEquals("[T][X] Test Todo", todo.toString(), "toString should reflect marked as done state");
+        assertEquals("[T][X] Test Todo", todo.toString(),
+                "toString should reflect marked as done state");
     }
 
     @Test
     void toFileFormat_formatsCorrectly() {
-        assertEquals("T | 0 | Test Todo", todo.toFileFormat(), "toFileFormat should match expected format before marking as done");
+        assertEquals("T | 0 | Test Todo", todo.toFileFormat(),
+                "toFileFormat should match expected format before marking as done");
 
         todo.markStatusIcon();
         assertEquals("T | 1 | Test Todo", todo.toFileFormat(), "toFileFormat should reflect marked as done state");

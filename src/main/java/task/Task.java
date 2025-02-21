@@ -83,6 +83,12 @@ public abstract class Task {
         return task;
     }
 
+    /**
+     * Updates the description of the task.
+     *
+     * @param newDescription The new description to set.
+     * @throws AssertionError If the new description is null or empty.
+     */
     public void updateDescription(String newDescription) {
         assert newDescription != null && !newDescription.trim().isEmpty() : "New description cannot be empty";
         this.description = newDescription;

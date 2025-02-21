@@ -1,3 +1,5 @@
+package gui;
+
 import dew.Dew;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -28,6 +30,11 @@ public class MainWindow extends AnchorPane {
     private Image dewImage = new Image(this.getClass().getResourceAsStream("/images/DaDew.png"));
     private Image backgroundImage = new Image(this.getClass().getResourceAsStream("/images/Background.png"));
 
+    /**
+     * Initializes the main GUI window.
+     * Binds the scroll pane to automatically scroll down as new messages are added.
+     * Displays a welcome message when the application starts.
+     */
     @FXML
     public void initialize() {
 

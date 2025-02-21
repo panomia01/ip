@@ -33,17 +33,17 @@ public class Parser {
         assert userInput != null : "User input should not be null";
         assert !userInput.trim().isEmpty() : "User input should not be empty";
         String[] inputParts = userInput.split(" ", 2);
-        String command = inputParts[0];
+        String command = inputParts[0].trim();
         switch (command) {
         case "list":
             return new ListCommand();
         case "mark":
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new DewException("Mark command must include a task description.");
             }
             return new MarkCommand(Integer.parseInt(inputParts[1]) - 1);
         case "unmark":
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new DewException("Unmark command must include a task description.");
             }
             return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
@@ -58,7 +58,7 @@ public class Parser {
             }
             return new AddCommand(new Todo(inputParts[1]));
         case "deadline":
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new DewException("Deadline command must include a task description and a deadline.");
             }
             if (!inputParts[1].contains(" /by ")) {
@@ -72,7 +72,7 @@ public class Parser {
                 throw new DewException("Invalid date format! Use YYYY-MM-DD.");
             }
         case "event":
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new DewException("Event command must include a task description and time range.");
             }
             if (!inputParts[1].contains(" /from ") || !inputParts[1].contains(" /to ")) {
@@ -100,7 +100,7 @@ public class Parser {
                 throw new DewException("Invalid task number! Task index must be a valid number.");
             }
         case "delete":
-            if (inputParts.length < 2) {
+            if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
                 throw new DewException("Delete command must include a task number.");
             }
             return new DeleteCommand(Integer.parseInt(inputParts[1]) - 1);

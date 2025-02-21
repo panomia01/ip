@@ -45,6 +45,11 @@ public class TaskList {
      * @param index The index of the task to be removed.
      */
     public String deleteTask(int index) {
+        if (tasks.isEmpty()) {
+            return "There is no tasks in the list";
+        } else if (index < 0 || index >= tasks.size()) {
+            return "Please select a task from the list";
+        }
         Task removedTask = tasks.remove(index);
         return "Noted. I've removed this task:\n   " + removedTask;
     }
