@@ -41,14 +41,14 @@ Adds a new task to the list. Dew supports three types of tasks:
 #### Usage:
 ```sh
 todo <task description>
-deadline <task description> /by <yyyy-mm-dd>
-event <task description> /from <TimeStart> /to <TimeEnd>
+deadline <task description> /by <yyyy-MM-dd HHmm>
+event <task description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
 ```
 #### Example:
 ```sh
 todo Buy groceries
-deadline Submit assignment /by 2025-02-25
-event project meeting /from Mon 2pm /to 4pm
+deadline Submit assignment /by 2025-02-25 2359
+event Project meeting /from 2025-03-01 1400 /to 2025-03-01 1600
 ```
 
 ### 3. Marking a task as done
@@ -109,6 +109,9 @@ edit <task number> <task category> <new value>
 #### Example:
 ```sh
 edit 2 description Buy vegetables
+edit 3 date 2025-03-10 1800
+edit 4 start 2025-04-01 0900
+edit 4 end 2025-04-01 1100
 ```
 
 ### 8. Exiting the application
