@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * A GUI for Dew using FXML.
  */
 public class Main extends Application {
-    private static final String FILE_PATH = "src/main/tasks.txt";
+    private static final String FILE_PATH = "data/tasks.txt";
     private final Dew dew = new Dew(FILE_PATH);
 
     @Override

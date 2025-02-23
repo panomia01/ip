@@ -2,6 +2,7 @@ package storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,6 +25,25 @@ public class Storage {
     public Storage(String filePath) {
         assert filePath != null && !filePath.isEmpty() : "File path should not be null or empty";
         this.filePath = filePath;
+        ensureFileExists();
+    }
+
+    /**
+     * Ensures that the file and its parent directories exist.
+     */
+    private void ensureFileExists() {
+        File file = new File(filePath);
+        try {
+            if (!file.exists()) {
+                File parentDir = file.getParentFile();
+                if (parentDir != null && !parentDir.exists()) {
+                    parentDir.mkdirs();
+                }
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            System.err.println("Error creating storage file: " + e.getMessage());
+        }
     }
 
     /**
