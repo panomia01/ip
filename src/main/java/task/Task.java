@@ -1,6 +1,7 @@
 package task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import dew.DewException;
 
@@ -8,6 +9,7 @@ import dew.DewException;
  * The Task class represents a generic task with a description and completion status.
  */
 public abstract class Task {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
     protected String description;
     protected boolean isDone;
 
@@ -54,6 +56,10 @@ public abstract class Task {
     public static Task fromString(String data) throws DewException {
         String[] parts = data.split(" \\| ");
 
+        if (parts.length < 3) {
+            throw new DewException("Invalid task format: " + data);
+        }
+
         String type = parts[0];
         boolean isDone = parts[1].equals("1");
         String description = parts[2];
@@ -64,16 +70,26 @@ public abstract class Task {
             task = new Todo(description);
             break;
         case "D":
-            LocalDate by = LocalDate.parse(parts[3]);
-            task = new Deadline(description, by);
+            if (parts.length < 4) {
+                throw new DewException("Invalid deadline format.");
+            }
+            try {
+                LocalDateTime by = LocalDateTime.parse(parts[3], FORMATTER);
+                task = new Deadline(description, parts[3]);
+            } catch (Exception e) {
+                throw new DewException("Invalid deadline date format. Use yyyy-MM-dd HHmm.");
+            }
             break;
         case "E":
+            if (parts.length < 5) {
+                throw new DewException("Invalid event format.");
+            }
             String timeStart = parts[3];
             String timeEnd = parts[4];
             task = new Event(description, timeStart, timeEnd);
             break;
         default:
-            throw new IllegalArgumentException("Invalid task format.");
+            throw new DewException("Unknown task type: " + type);
         }
 
         if (isDone) {

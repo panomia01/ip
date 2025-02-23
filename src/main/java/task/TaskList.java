@@ -2,6 +2,8 @@ package task;
 
 import java.util.ArrayList;
 
+import dew.DewException;
+
 /**
  * The TaskList class manages a collection of tasks, allowing addition, deletion,
  * marking, unmarking, and listing of tasks.
@@ -58,27 +60,34 @@ public class TaskList {
      * Marks a task as completed by index and prints a confirmation message.
      *
      * @param index The index of the task to be marked.
+     * @return A confirmation message indicating the task has been marked.
+     * @throws DewException If the task index is out of bounds.
      */
-    public String markTask(int index) {
+    public String markTask(int index) throws DewException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DewException("Invalid task index! Task number does not exist.");
+        }
+
         tasks.get(index).markStatusIcon();
-        System.out.println("Nice! I've marked this task as done:\n   " + tasks.get(index));
-        StringBuilder sb = new StringBuilder();
-        sb.append("Nice! I've marked this task as done:\n   " + tasks.get(index));
-        return sb.toString();
+        return "Nice! I've marked this task as done:\n   " + tasks.get(index);
     }
 
     /**
      * Unmarks a task, setting it as incomplete, and prints a confirmation message.
      *
      * @param index The index of the task to be unmarked.
+     * @return A confirmation message indicating the task has been unmarked.
+     * @throws DewException If the task index is out of bounds.
      */
-    public String unmarkTask(int index) {
-        StringBuilder sb = new StringBuilder();
+    public String unmarkTask(int index) throws DewException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DewException("Invalid task index! Task number does not exist.");
+        }
+
         tasks.get(index).unMarkStatusIcon();
-        System.out.println("OK, I've marked this task as not done yet:\n   " + tasks.get(index));
-        sb.append("OK, I've marked this task as not done yet:\n   " + tasks.get(index));
-        return sb.toString();
+        return "OK, I've marked this task as not done yet:\n   " + tasks.get(index);
     }
+
 
     /**
      * Returns the list of tasks.

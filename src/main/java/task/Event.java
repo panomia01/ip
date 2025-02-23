@@ -1,24 +1,35 @@
 package task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Event class represents a task with a specific start and end time.
  */
 public class Event extends Task {
 
-    protected String timeStart;
-    protected String timeEnd;
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy, h:mma");
+    protected LocalDateTime timeStart;
+    protected LocalDateTime timeEnd;
 
     /**
      * Constructs an Event task with a description, start time, and end time.
      *
      * @param description The description of the event.
-     * @param timeStart   The start time of the event.
-     * @param timeEnd     The end time of the event.
+     * @param timeStart   The start time of the event in "yyyy-MM-dd HHmm" format.
+     * @param timeEnd     The end time of the event in "yyyy-MM-dd HHmm" format.
+     * @throws IllegalArgumentException If the provided date format is incorrect.
      */
     public Event(String description, String timeStart, String timeEnd) {
         super(description);
-        this.timeEnd = timeEnd;
-        this.timeStart = timeStart;
+        try {
+            this.timeStart = LocalDateTime.parse(timeStart, INPUT_FORMAT);
+            this.timeEnd = LocalDateTime.parse(timeEnd, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format! Use YYYY-MM-DD HHmm.");
+        }
     }
 
     /**
@@ -29,7 +40,8 @@ public class Event extends Task {
     @Override
     public String toFileFormat() {
         String isTaskMarkedAsDone = isDone ? "1" : "0";
-        return "E | " + isTaskMarkedAsDone + " | " + description + " | " + timeStart + " | " + timeEnd;
+        return "E | " + isTaskMarkedAsDone + " | " + description + " | "
+                + timeStart.format(INPUT_FORMAT) + " | " + timeEnd.format(INPUT_FORMAT);
     }
 
     /**
@@ -46,22 +58,21 @@ public class Event extends Task {
             updateDescription(newValue);
         } else if (component.equalsIgnoreCase("start")) {
             try {
-                this.timeStart = newValue;
-            } catch (Exception e) {
-                throw new IllegalArgumentException("Invalid date format for 'start'. Use YYYY-MM-DD.");
+                this.timeStart = LocalDateTime.parse(newValue, INPUT_FORMAT);
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Invalid date format for 'start'. Use YYYY-MM-DD HHmm.");
             }
         } else if (component.equalsIgnoreCase("end")) {
             try {
-                this.timeEnd = newValue;
-            } catch (Exception e) {
-                throw new IllegalArgumentException("Invalid date format for 'end'. Use YYYY-MM-DD.");
+                this.timeEnd = LocalDateTime.parse(newValue, INPUT_FORMAT);
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Invalid date format for 'end'. Use YYYY-MM-DD HHmm.");
             }
         } else {
             throw new IllegalArgumentException("Invalid component '" + component
                     + "' for Event tasks. Available: description, start, end");
         }
     }
-
 
     /**
      * Returns a string representation of the event.
@@ -70,6 +81,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + timeStart + " to: " + timeEnd + ")";
+        return "[E]" + super.toString() + " (from: " + timeStart.format(OUTPUT_FORMAT)
+                + " to: " + timeEnd.format(OUTPUT_FORMAT) + ")";
     }
 }

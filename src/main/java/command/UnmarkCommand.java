@@ -1,5 +1,6 @@
 package command;
 
+import dew.DewException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -26,7 +27,7 @@ public class UnmarkCommand extends Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system for saving updated tasks.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DewException {
         String responseToUser = tasks.unmarkTask(index);
         storage.saveTasks(tasks.getTasks());
         return responseToUser;

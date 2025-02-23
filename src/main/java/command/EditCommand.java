@@ -1,5 +1,6 @@
 package command;
 
+import dew.DewException;
 import storage.Storage;
 import task.Task;
 import task.TaskList;
@@ -35,17 +36,23 @@ public class EditCommand extends Command {
      * @param tasks   The list of tasks.
      * @param ui      The UI instance for displaying messages.
      * @param storage The storage system for saving updated tasks.
+     * @return A message indicating the result of the edit operation.
+     * @throws DewException If the task index is out of bounds.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        assert taskIndex >= 0 && taskIndex < tasks.size() : "Invalid task index";
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DewException {
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
+            throw new DewException("Invalid task index! Task number does not exist.");
+        }
 
         Task task = tasks.get(taskIndex);
         task.updateComponent(component, newValue);
 
-        //ui.showMessage("Updated task: " + task);
+        // Save updated task list
         storage.saveTasks(tasks.getTasks());
+
         return "Updated task: " + task;
     }
+
 
     /**
      * Determines whether this command causes the application to exit.

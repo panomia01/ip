@@ -1,23 +1,31 @@
 package task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
- * The Deadline class represents a task with a specific due date.
+ * The Deadline class represents a task with a specific due date and time.
  */
 public class Deadline extends Task {
 
-    protected LocalDate date;
+    protected LocalDateTime dateTime;
+    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy, HH:mm");
 
     /**
-     * Constructs a Deadline task with a description and due date.
+     * Constructs a Deadline task with a description and due date/time.
      *
      * @param description The description of the deadline task.
-     * @param date          The due date of the task.
+     * @param dateTime    The due date and time of the task.
      */
-    public Deadline(String description, LocalDate date) {
+    public Deadline(String description, String dateTime) {
         super(description);
-        this.date = date;
+        try {
+            this.dateTime = LocalDateTime.parse(dateTime, INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Invalid date format. Use yyyy-MM-dd HHmm.");
+        }
     }
 
     /**
@@ -28,12 +36,12 @@ public class Deadline extends Task {
     @Override
     public String toFileFormat() {
         String isTaskMarkedAsDone = isDone ? "1" : "0";
-        return "D | " + isTaskMarkedAsDone + " | " + description + " | " + date;
+        return "D | " + isTaskMarkedAsDone + " | " + description + " | " + dateTime.format(INPUT_FORMAT);
     }
 
     /**
      * Updates a specific component of a Deadline task.
-     * The user can update the task description or the deadline date.
+     * The user can update the task description or the due date/time.
      *
      * @param component The component to update ("description" or "by").
      * @param newValue  The new value for the specified component.
@@ -45,16 +53,15 @@ public class Deadline extends Task {
             updateDescription(newValue);
         } else if (component.equalsIgnoreCase("date")) {
             try {
-                this.date = LocalDate.parse(newValue);
-            } catch (Exception e) {
-                throw new IllegalArgumentException("Invalid date format for 'by'. Use YYYY-MM-DD.");
+                this.dateTime = LocalDateTime.parse(newValue, INPUT_FORMAT);
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Invalid date format for 'date'. Use yyyy-MM-dd HHmm.");
             }
         } else {
             throw new IllegalArgumentException("Invalid component '" + component
                     + "' for Deadline tasks. Available: description, date");
         }
     }
-
 
     /**
      * Returns a string representation of the deadline task.
@@ -63,7 +70,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date.getMonth() + " "
-                + date.getDayOfMonth() + " " + date.getYear() + ")";
+        return "[D]" + super.toString() + " (by: " + dateTime.format(OUTPUT_FORMAT) + ")";
     }
 }

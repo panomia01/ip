@@ -1,4 +1,3 @@
-T | 0 | sleep
+E | 1 | project meeting | 2025-10-22 1000 | 2025-10-25 2359
+D | 0 | test | 2025-10-25 2020
 T | 0 | run
-T | 0 | interview
-T | 0 | project meeting

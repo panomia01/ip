@@ -1,5 +1,6 @@
 package command;
 
+import dew.DewException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -16,7 +17,7 @@ public abstract class Command {
      * @param ui      The user interface for displaying messages.
      * @param storage The storage system for saving and loading tasks.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DewException;
 
     /**
      * Determines whether this command causes the application to exit.
