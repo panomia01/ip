@@ -97,6 +97,11 @@ find assignment
 
 ### 7. Editing a task
 Modifies an existing task’s description.
+
+**Task categories:**
+- **todo:** description
+- **deadline:** description, date
+- **event:** description, start, end
 #### Usage:
 ```sh
 edit <task number> <task category> <new value>

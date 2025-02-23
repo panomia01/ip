@@ -51,7 +51,7 @@ public class Deadline extends Task {
             }
         } else {
             throw new IllegalArgumentException("Invalid component '" + component
-                    + "' for Deadline tasks. Available: description, by");
+                    + "' for Deadline tasks. Available: description, date");
         }
     }
 
