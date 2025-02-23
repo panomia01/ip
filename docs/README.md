@@ -99,9 +99,9 @@ find assignment
 Modifies an existing task’s description.
 
 **Task categories:**
-- **todo:** description
-- **deadline:** description, date
-- **event:** description, start, end
+- **Todo:** description
+- **Deadline:** description, date
+- **Event:** description, start, end
 #### Usage:
 ```sh
 edit <task number> <task category> <new value>
