@@ -36,7 +36,7 @@ public class Parser {
 
         switch (command) {
         case "list":
-            return handleList();
+            return handleList(inputParts);
         case "mark":
             return handleMark(inputParts);
         case "unmark":
@@ -62,39 +62,57 @@ public class Parser {
 
     /**
      * Handles the "list" command, which lists all tasks.
+     * Ensures that the command is exactly "list" with no additional arguments.
      *
+     * @param inputParts The user input split into parts.
      * @return A ListCommand object.
+     * @throws DewException If additional arguments are provided.
      */
-    private static Command handleList() {
+    private static Command handleList(String[] inputParts) throws DewException {
+        if (inputParts.length > 1 && !inputParts[1].trim().isEmpty()) {
+            throw new DewException("The 'list' command should not have any arguments.");
+        }
         return new ListCommand();
     }
 
     /**
      * Handles the "mark" command, which marks a task as completed.
+     * Ensures that the input is strictly an integer.
      *
      * @param inputParts The user input split into parts.
      * @return A MarkCommand object.
-     * @throws DewException If the command is missing a task number.
+     * @throws DewException If the command is missing a task number or the input is not a valid integer.
      */
     private static Command handleMark(String[] inputParts) throws DewException {
         if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
             throw new DewException("Mark command must include a task number.");
         }
-        return new MarkCommand(Integer.parseInt(inputParts[1]) - 1);
+        try {
+            int taskIndex = Integer.parseInt(inputParts[1].trim()) - 1;
+            return new MarkCommand(taskIndex);
+        } catch (NumberFormatException e) {
+            throw new DewException("Invalid task number! Please enter a valid integer.");
+        }
     }
 
     /**
      * Handles the "unmark" command, which marks a task as incomplete.
+     * Ensures that the input is strictly an integer.
      *
      * @param inputParts The user input split into parts.
      * @return An UnmarkCommand object.
-     * @throws DewException If the command is missing a task number.
+     * @throws DewException If the command is missing a task number or the input is not a valid integer.
      */
     private static Command handleUnmark(String[] inputParts) throws DewException {
         if (inputParts.length < 2 || inputParts[1].trim().isEmpty()) {
             throw new DewException("Unmark command must include a task number.");
         }
-        return new UnmarkCommand(Integer.parseInt(inputParts[1]) - 1);
+        try {
+            int taskIndex = Integer.parseInt(inputParts[1].trim()) - 1;
+            return new UnmarkCommand(taskIndex);
+        } catch (NumberFormatException e) {
+            throw new DewException("Invalid task number! Please enter a valid integer.");
+        }
     }
 
     /**
